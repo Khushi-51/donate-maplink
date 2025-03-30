@@ -24,6 +24,7 @@ const Login = () => {
     try {
       setIsSubmitting(true);
       await login(email, password);
+      // Navigation will be handled by useRequireAuth hook
     } catch (error) {
       console.error("Login error:", error);
       setIsSubmitting(false);

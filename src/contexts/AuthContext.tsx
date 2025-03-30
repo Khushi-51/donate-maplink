@@ -1,13 +1,16 @@
+
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { User, UserRole } from "@/types";
-import { mockDonorUser, mockNgoUser } from "@/services/mockData";
+import { mockUsers } from "@/services/mockData";
 import { toast } from "sonner";
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
-  login: (email: string, role: UserRole) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  signup: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({
@@ -15,6 +18,8 @@ const AuthContext = createContext<AuthContextProps>({
   loading: true,
   login: async () => {},
   logout: () => {},
+  signup: async () => {},
+  forgotPassword: async () => {}
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -32,20 +37,59 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  const login = async (email: string, role: UserRole) => {
+  const login = async (email: string, password: string) => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    let newUser: User;
-    if (role === 'donor') {
-      newUser = { ...mockDonorUser, email: email, role: role };
-    } else {
-      newUser = { ...mockNgoUser, email: email, role: role };
+    // Find user with matching email
+    const foundUser = mockUsers.find(u => u.email === email);
+    
+    if (!foundUser) {
+      toast.error("Invalid credentials");
+      throw new Error("Invalid credentials");
+    }
+
+    setUser(foundUser);
+    localStorage.setItem('user', JSON.stringify(foundUser));
+    toast.success(`Logged in as ${foundUser.role}`);
+  };
+
+  const signup = async (email: string, password: string, name: string, role: UserRole) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // In a real implementation, we would create a new user in the database
+    const newUser: User = {
+      id: `user${Date.now()}`,
+      email,
+      name,
+      role,
+      profileImageUrl: `https://i.pravatar.cc/150?u=${Date.now()}`
+    };
+
+    if (role === 'ngo') {
+      newUser.organizationName = name;
+      newUser.registrationNumber = `NGO${Date.now()}`;
     }
 
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));
-    toast.success(`Logged in as ${role}`);
+    toast.success(`Account created successfully`);
+  };
+
+  const forgotPassword = async (email: string) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Check if email exists
+    const userExists = mockUsers.some(u => u.email === email);
+    
+    if (!userExists) {
+      toast.error("Email not found");
+      throw new Error("Email not found");
+    }
+
+    toast.success("Password reset instructions sent to your email");
   };
 
   const logout = () => {
@@ -54,7 +98,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     toast.success("Logged out");
   };
 
-  const value: AuthContextProps = { user, loading, login, logout };
+  const value: AuthContextProps = { 
+    user, 
+    loading, 
+    login, 
+    logout, 
+    signup, 
+    forgotPassword 
+  };
 
   return (
     <AuthContext.Provider value={value}>

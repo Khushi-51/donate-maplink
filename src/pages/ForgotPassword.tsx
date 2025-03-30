@@ -7,13 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowLeft, Loader2, CheckCircle } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
   const { forgotPassword } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,7 +24,7 @@ const ForgotPassword = () => {
       await forgotPassword(email);
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Password reset error:", error);
+      console.error("Forgot password error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -45,11 +44,12 @@ const ForgotPassword = () => {
         
         <Card>
           <CardHeader>
-            <CardTitle>Reset password</CardTitle>
+            <CardTitle>Reset your password</CardTitle>
             <CardDescription>
-              Enter your email and we'll send you a link to reset your password
+              Enter your email address and we'll send you a link to reset your password
             </CardDescription>
           </CardHeader>
+          
           <CardContent>
             {!isSubmitted ? (
               <form onSubmit={handleSubmit}>
@@ -66,33 +66,33 @@ const ForgotPassword = () => {
                       autoComplete="email"
                     />
                   </div>
-                  <Button className="w-full" disabled={isSubmitting}>
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Sending Reset Link
+                        Sending reset link
                       </>
                     ) : (
-                      "Send Reset Link"
+                      "Send reset link"
                     )}
                   </Button>
                 </div>
               </form>
             ) : (
-              <div className="flex flex-col items-center text-center gap-2 py-4">
-                <CheckCircle className="h-12 w-12 text-maplink-green mb-2" />
-                <h3 className="text-lg font-semibold">Check your email</h3>
+              <div className="text-center py-4">
+                <div className="mb-4 text-green-500 font-medium">Password reset email sent!</div>
                 <p className="text-muted-foreground">
-                  We've sent a password reset link to <strong>{email}</strong>
+                  Check your inbox for instructions on how to reset your password.
                 </p>
               </div>
             )}
           </CardContent>
+          
           <CardFooter>
             <div className="text-center w-full text-sm">
-              <Link to="/login" className="text-maplink-blue hover:underline inline-flex items-center">
-                <ArrowLeft className="mr-1 h-4 w-4" />
-                Back to login
+              Remember your password?{" "}
+              <Link to="/login" className="text-maplink-blue hover:underline">
+                Sign in
               </Link>
             </div>
           </CardFooter>
