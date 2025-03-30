@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -9,21 +9,13 @@ import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user, login } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  
-  // Redirect if already logged in
-  useEffect(() => {
-    if (user) {
-      navigate(`/dashboard/${user.role}`);
-    }
-  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,11 +23,10 @@ const Login = () => {
     
     try {
       setIsSubmitting(true);
-      const role = await login(email, password);
-      navigate(`/dashboard/${role}`);
+      await login(email, password);
+      // Navigation will be handled by useRequireAuth hook
     } catch (error) {
       console.error("Login error:", error);
-    } finally {
       setIsSubmitting(false);
     }
   };

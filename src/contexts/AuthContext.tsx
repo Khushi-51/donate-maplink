@@ -1,24 +1,24 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { User, UserRole } from "@/types";
+import { mockUsers } from "@/services/mockData";
 import { toast } from "sonner";
-import { findUserByEmail, createUser } from "@/services/mongodb";
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<UserRole>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  signup: (email: string, password: string, name: string, role: UserRole) => Promise<UserRole>;
+  signup: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({
   user: null,
   loading: true,
-  login: async () => 'donor' as UserRole,
+  login: async () => {},
   logout: () => {},
-  signup: async () => 'donor' as UserRole,
+  signup: async () => {},
   forgotPassword: async () => {}
 });
 
@@ -35,99 +35,61 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(JSON.parse(storedUser));
     }
     setLoading(false);
-    
-    // Initialize MongoDB connection
-    const initMongoDB = async () => {
-      try {
-        const { connectToMongoDB } = await import("@/services/mongodb");
-        await connectToMongoDB();
-      } catch (error) {
-        console.error("Failed to connect to MongoDB", error);
-        toast.error("Failed to connect to database", {
-          description: "Using local storage as fallback"
-        });
-      }
-    };
-    
-    initMongoDB();
   }, []);
 
-  const login = async (email: string, password: string): Promise<UserRole> => {
-    try {
-      // In production, we would hash the password and compare with stored hash
-      // For demo, we're directly comparing email addresses
-      const foundUser = await findUserByEmail(email);
-      
-      if (!foundUser) {
-        toast.error("Invalid credentials");
-        throw new Error("Invalid credentials");
-      }
+  const login = async (email: string, password: string) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      setUser(foundUser);
-      localStorage.setItem('user', JSON.stringify(foundUser));
-      toast.success(`Logged in as ${foundUser.role}`);
-      
-      // Return the user role to navigate in the component
-      return foundUser.role;
-    } catch (error) {
-      console.error("Login error:", error);
-      throw error;
+    // Find user with matching email
+    const foundUser = mockUsers.find(u => u.email === email);
+    
+    if (!foundUser) {
+      toast.error("Invalid credentials");
+      throw new Error("Invalid credentials");
     }
+
+    setUser(foundUser);
+    localStorage.setItem('user', JSON.stringify(foundUser));
+    toast.success(`Logged in as ${foundUser.role}`);
   };
 
-  const signup = async (email: string, password: string, name: string, role: UserRole): Promise<UserRole> => {
-    try {
-      // Check if user exists
-      const existingUser = await findUserByEmail(email);
-      
-      if (existingUser) {
-        toast.error("Email already exists");
-        throw new Error("Email already exists");
-      }
-      
-      // In a real implementation, we would hash the password
-      const newUserData = {
-        email,
-        name,
-        role,
-        profileImageUrl: `https://i.pravatar.cc/150?u=${Date.now()}`
-      } as Omit<User, 'id'>;
+  const signup = async (email: string, password: string, name: string, role: UserRole) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (role === 'ngo') {
-        newUserData.organizationName = name;
-        newUserData.registrationNumber = `NGO${Date.now()}`;
-      }
+    // In a real implementation, we would create a new user in the database
+    const newUser: User = {
+      id: `user${Date.now()}`,
+      email,
+      name,
+      role,
+      profileImageUrl: `https://i.pravatar.cc/150?u=${Date.now()}`
+    };
 
-      const newUser = await createUser(newUserData);
-
-      setUser(newUser);
-      localStorage.setItem('user', JSON.stringify(newUser));
-      toast.success(`Account created successfully`);
-      
-      // Return the user role to navigate in the component
-      return role;
-    } catch (error) {
-      console.error("Signup error:", error);
-      throw error;
+    if (role === 'ngo') {
+      newUser.organizationName = name;
+      newUser.registrationNumber = `NGO${Date.now()}`;
     }
+
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+    toast.success(`Account created successfully`);
   };
 
   const forgotPassword = async (email: string) => {
-    try {
-      // Check if user exists
-      const userExists = await findUserByEmail(email);
-      
-      if (!userExists) {
-        toast.error("Email not found");
-        throw new Error("Email not found");
-      }
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // In a real implementation, we would send a password reset email
-      toast.success("Password reset instructions sent to your email");
-    } catch (error) {
-      console.error("Forgot password error:", error);
-      throw error;
+    // Check if email exists
+    const userExists = mockUsers.some(u => u.email === email);
+    
+    if (!userExists) {
+      toast.error("Email not found");
+      throw new Error("Email not found");
     }
+
+    toast.success("Password reset instructions sent to your email");
   };
 
   const logout = () => {
