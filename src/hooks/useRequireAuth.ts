@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/types';
 import { toast } from "sonner";
+import { config } from '@/config';
 
 export function useRequireAuth(redirectTo: string = '/login', requiredRole?: UserRole) {
   const { user, loading } = useAuth();
@@ -24,6 +25,23 @@ export function useRequireAuth(redirectTo: string = '/login', requiredRole?: Use
       }
     }
   }, [user, loading, navigate, redirectTo, requiredRole]);
+
+  // Initialize MongoDB if configured
+  useEffect(() => {
+    if (config.useMongoDB) {
+      const initMongoDB = async () => {
+        try {
+          const { connectToMongoDB } = await import('@/services/mongodb');
+          await connectToMongoDB();
+        } catch (error) {
+          console.error('Failed to initialize MongoDB:', error);
+          // We already handle this in AuthContext, so no need to show another toast
+        }
+      };
+      
+      initMongoDB();
+    }
+  }, []);
 
   return { user, loading };
 }
