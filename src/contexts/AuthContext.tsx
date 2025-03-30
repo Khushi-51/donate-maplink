@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { User, UserRole } from "@/types";
 import { mockUsers } from "@/services/mockData";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
   user: User | null;
@@ -52,6 +53,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(foundUser);
     localStorage.setItem('user', JSON.stringify(foundUser));
     toast.success(`Logged in as ${foundUser.role}`);
+    
+    // Return the user role to navigate in the component
+    return foundUser.role;
   };
 
   const signup = async (email: string, password: string, name: string, role: UserRole) => {
@@ -75,6 +79,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));
     toast.success(`Account created successfully`);
+    
+    // Return the user role to navigate in the component
+    return role;
   };
 
   const forgotPassword = async (email: string) => {

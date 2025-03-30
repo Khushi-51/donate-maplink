@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { UserRole } from "@/types";
@@ -20,8 +20,15 @@ const Signup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   
-  const { signup } = useAuth();
+  const { user, signup } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate(`/dashboard/${user.role}`);
+    }
+  }, [user, navigate]);
 
   const validatePassword = (pass: string) => {
     if (pass.length < 8) {
@@ -50,10 +57,11 @@ const Signup = () => {
     
     try {
       setIsSubmitting(true);
-      await signup(email, password, name, role);
-      // Navigation will be handled by useRequireAuth hook
+      const userRole = await signup(email, password, name, role);
+      navigate(`/dashboard/${userRole}`);
     } catch (error) {
       console.error("Signup error:", error);
+    } finally {
       setIsSubmitting(false);
     }
   };
