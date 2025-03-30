@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { useRequireAuth } from "@/hooks/useRequireAuth";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2, Timer, Brain, AlertTriangle, ThermometerIcon, DropletIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,6 @@ const foodCategories = [
   { id: "canned", label: "Canned Goods", examples: "Beans, Soup, Vegetables" },
 ];
 
-// Record types for the prediction result
 type ExpiryRiskLevel = 'low' | 'medium' | 'high';
 type PredictionResult = {
   estimatedDays: number;
@@ -54,9 +53,9 @@ const AIExpiryPrediction = () => {
   const [purchaseDate, setPurchaseDate] = useState<Date>(new Date());
   const [openedAlready, setOpenedAlready] = useState<string>("no");
   const [storageLocation, setStorageLocation] = useState("refrigerator");
-  const [temperature, setTemperature] = useState([4]); // Default fridge temp
-  const [humidity, setHumidity] = useState([50]); // Default humidity
-  
+  const [temperature, setTemperature] = useState([4]);
+  const [humidity, setHumidity] = useState([50]);
+
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<PredictionResult | null>(null);
 
@@ -70,13 +69,10 @@ const AIExpiryPrediction = () => {
     
     setIsAnalyzing(true);
     
-    // Simulate AI analysis
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    // Mock prediction logic based on inputs
-    let estimatedDays = 7; // Default expiry of 7 days
+    let estimatedDays = 7;
     
-    // Adjust based on category
     switch (foodCategory) {
       case "fruits":
         estimatedDays = 5;
@@ -107,19 +103,16 @@ const AIExpiryPrediction = () => {
         break;
     }
     
-    // Adjust based on whether it's opened
     if (openedAlready === "yes") {
       estimatedDays = Math.round(estimatedDays * 0.6);
     }
     
-    // Adjust based on storage location
     if (storageLocation === "pantry") {
       estimatedDays = Math.round(estimatedDays * 0.8);
     } else if (storageLocation === "freezer") {
       estimatedDays = estimatedDays * 3;
     }
     
-    // Adjust based on temperature
     if (storageLocation === "refrigerator") {
       if (temperature[0] > 5) {
         estimatedDays = Math.round(estimatedDays * 0.8);
@@ -128,7 +121,6 @@ const AIExpiryPrediction = () => {
       }
     }
     
-    // Calculate expiry date and risk level
     const expiryDate = new Date(purchaseDate);
     expiryDate.setDate(expiryDate.getDate() + estimatedDays);
     
@@ -143,32 +135,30 @@ const AIExpiryPrediction = () => {
       riskPercentage = 50;
     }
     
-    // Generate mock factors
     const factors = [
       {
         name: "Storage Temperature",
-        impact: temperature[0] < 5 ? "positive" : "negative" as const,
+        impact: temperature[0] < 5 ? "positive" as const : "negative" as const,
         description: temperature[0] < 5
           ? "Optimal low temperature slows bacterial growth"
           : "Higher temperature accelerates spoilage"
       },
       {
         name: "Package Status",
-        impact: openedAlready === "yes" ? "negative" : "positive" as const,
+        impact: openedAlready === "yes" ? "negative" as const : "positive" as const,
         description: openedAlready === "yes"
           ? "Opened packaging exposes food to air and contaminants"
           : "Sealed packaging protects from external factors"
       },
       {
         name: "Food Category",
-        impact: ["meat", "seafood", "dairy"].includes(foodCategory) ? "negative" : "neutral" as const,
+        impact: ["meat", "seafood", "dairy"].includes(foodCategory) ? "negative" as const : "neutral" as const,
         description: ["meat", "seafood", "dairy"].includes(foodCategory)
           ? "This category typically has shorter shelf life"
           : "This category has average shelf stability"
       }
     ];
     
-    // Generate storage tips
     const tips = [
       "Store in an airtight container to prolong freshness",
       "Keep away from direct sunlight",
@@ -180,7 +170,6 @@ const AIExpiryPrediction = () => {
         : "Keep sealed until ready to use"
     ];
     
-    // Set the result
     setResult({
       estimatedDays,
       expiryDate,

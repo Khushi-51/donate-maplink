@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/types';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export function useRequireAuth(redirectTo: string = '/login', requiredRole?: UserRole) {
   const { user, loading } = useAuth();
