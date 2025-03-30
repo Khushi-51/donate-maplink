@@ -3,23 +3,22 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { User, UserRole } from "@/types";
 import { mockUsers } from "@/services/mockData";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<UserRole>;
   logout: () => void;
-  signup: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
+  signup: (email: string, password: string, name: string, role: UserRole) => Promise<UserRole>;
   forgotPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({
   user: null,
   loading: true,
-  login: async () => {},
+  login: async () => 'donor' as UserRole,
   logout: () => {},
-  signup: async () => {},
+  signup: async () => 'donor' as UserRole,
   forgotPassword: async () => {}
 });
 
@@ -38,9 +37,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const login = async (email: string, password: string): Promise<UserRole> => {
+    // Simulate API call with a shorter delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // Find user with matching email
     const foundUser = mockUsers.find(u => u.email === email);
@@ -58,9 +57,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return foundUser.role;
   };
 
-  const signup = async (email: string, password: string, name: string, role: UserRole) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const signup = async (email: string, password: string, name: string, role: UserRole): Promise<UserRole> => {
+    // Simulate API call with a shorter delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // In a real implementation, we would create a new user in the database
     const newUser: User = {
@@ -85,8 +84,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const forgotPassword = async (email: string) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Simulate API call with a shorter delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
 
     // Check if email exists
     const userExists = mockUsers.some(u => u.email === email);
