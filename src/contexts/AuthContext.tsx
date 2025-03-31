@@ -1,24 +1,28 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { User, UserRole } from "@/types";
-import { mockUsers } from "@/services/mockData";
 import { toast } from "sonner";
+import { 
+  authenticateUser, 
+  registerUser, 
+  requestPasswordReset 
+} from "@/services/dataService";
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<UserRole>;
   logout: () => void;
-  signup: (email: string, password: string, name: string, role: UserRole) => Promise<void>;
+  signup: (email: string, password: string, name: string, role: UserRole) => Promise<UserRole>;
   forgotPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({
   user: null,
   loading: true,
-  login: async () => {},
+  login: async () => 'donor' as UserRole,
   logout: () => {},
-  signup: async () => {},
+  signup: async () => 'donor' as UserRole,
   forgotPassword: async () => {}
 });
 
@@ -29,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate fetching user data from localStorage or an API
+    // Get user from localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -37,59 +41,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Find user with matching email
-    const foundUser = mockUsers.find(u => u.email === email);
-    
-    if (!foundUser) {
+  const login = async (email: string, password: string): Promise<UserRole> => {
+    try {
+      const authenticatedUser = await authenticateUser(email, password);
+      setUser(authenticatedUser);
+      localStorage.setItem('user', JSON.stringify(authenticatedUser));
+      toast.success(`Logged in as ${authenticatedUser.role}`);
+      return authenticatedUser.role;
+    } catch (error) {
       toast.error("Invalid credentials");
-      throw new Error("Invalid credentials");
+      throw error;
     }
-
-    setUser(foundUser);
-    localStorage.setItem('user', JSON.stringify(foundUser));
-    toast.success(`Logged in as ${foundUser.role}`);
   };
 
-  const signup = async (email: string, password: string, name: string, role: UserRole) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // In a real implementation, we would create a new user in the database
-    const newUser: User = {
-      id: `user${Date.now()}`,
-      email,
-      name,
-      role,
-      profileImageUrl: `https://i.pravatar.cc/150?u=${Date.now()}`
-    };
-
-    if (role === 'ngo') {
-      newUser.organizationName = name;
-      newUser.registrationNumber = `NGO${Date.now()}`;
+  const signup = async (email: string, password: string, name: string, role: UserRole): Promise<UserRole> => {
+    try {
+      const newUser = await registerUser(email, password, name, role);
+      setUser(newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
+      toast.success(`Account created successfully`);
+      return newUser.role;
+    } catch (error: any) {
+      toast.error(error.message || "Failed to create account");
+      throw error;
     }
-
-    setUser(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    toast.success(`Account created successfully`);
   };
 
-  const forgotPassword = async (email: string) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Check if email exists
-    const userExists = mockUsers.some(u => u.email === email);
-    
-    if (!userExists) {
-      toast.error("Email not found");
-      throw new Error("Email not found");
+  const forgotPassword = async (email: string): Promise<void> => {
+    try {
+      await requestPasswordReset(email);
+      toast.success("Password reset instructions sent to your email");
+    } catch (error: any) {
+      toast.error(error.message || "Email not found");
+      throw error;
     }
-
-    toast.success("Password reset instructions sent to your email");
   };
 
   const logout = () => {

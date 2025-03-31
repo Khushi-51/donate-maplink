@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -14,8 +14,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      navigate(`/dashboard/${user.role}`);
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,8 +30,8 @@ const Login = () => {
     
     try {
       setIsSubmitting(true);
-      await login(email, password);
-      // Navigation will be handled by useRequireAuth hook
+      const userRole = await login(email, password);
+      navigate(`/dashboard/${userRole}`);
     } catch (error) {
       console.error("Login error:", error);
       setIsSubmitting(false);
