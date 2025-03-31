@@ -7,6 +7,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Logo from "@/components/Logo";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +30,6 @@ import {
   X,
   User,
   Settings,
-  FilePenLine,
   Brain,
 } from "lucide-react";
 
@@ -117,17 +118,14 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="flex min-h-screen bg-maplink-lightgray">
+    <div className="flex min-h-screen bg-maplink-lightgray dark:bg-gray-900 transition-colors duration-200">
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 bg-white border-r shadow-sm">
-        <div className="p-4 flex items-center gap-2">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold text-maplink-green">
-              0<span className="text-maplink-orange">Waste</span>
-            </span>
-          </Link>
+      <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-gray-800 border-r shadow-sm dark:border-gray-700 transition-colors duration-200">
+        <div className="p-4 flex items-center justify-between">
+          <Logo size="small" />
+          <ThemeToggle />
         </div>
-        <Separator />
+        <Separator className="dark:bg-gray-700" />
         <ScrollArea className="flex-1">
           <nav className="px-2 py-4">
             <div className="space-y-1">
@@ -138,8 +136,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                   className={cn(
                     "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
                     location.pathname === item.href
-                      ? "bg-maplink-green text-white"
-                      : "text-gray-700 hover:bg-maplink-lightgray"
+                      ? "bg-maplink-green text-white dark:bg-green-700"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-maplink-lightgray dark:hover:bg-gray-700"
                   )}
                 >
                   {item.icon}
@@ -149,16 +147,16 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             </div>
           </nav>
         </ScrollArea>
-        <Separator />
+        <Separator className="dark:bg-gray-700" />
         <div className="p-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="w-full flex justify-start items-center gap-2">
+              <Button variant="ghost" className="w-full flex justify-start items-center gap-2 dark:text-white">
                 <Avatar className="h-8 w-8">
                   {user?.profileImageUrl ? (
                     <AvatarImage src={user.profileImageUrl} alt={user.name} />
                   ) : (
-                    <AvatarFallback>{userInitials}</AvatarFallback>
+                    <AvatarFallback className="bg-maplink-green text-white">{userInitials}</AvatarFallback>
                   )}
                 </Avatar>
                 <div className="flex flex-col items-start text-left">
@@ -191,14 +189,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       </aside>
       
       {/* Mobile Nav */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b shadow-sm">
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 border-b shadow-sm dark:border-gray-700 transition-colors duration-200">
         <div className="px-4 py-3 flex justify-between items-center">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold text-maplink-green">
-              0<span className="text-maplink-orange">Waste</span>
-            </span>
-          </Link>
+          <Logo size="small" />
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full">
@@ -206,7 +201,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                     {user?.profileImageUrl ? (
                       <AvatarImage src={user.profileImageUrl} alt={user.name} />
                     ) : (
-                      <AvatarFallback>{userInitials}</AvatarFallback>
+                      <AvatarFallback className="bg-maplink-green text-white">{userInitials}</AvatarFallback>
                     )}
                   </Avatar>
                 </Button>
@@ -241,7 +236,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <nav className="p-4 bg-white border-t">
+          <nav className="p-4 bg-white dark:bg-gray-800 border-t dark:border-gray-700">
             <div className="space-y-1">
               {navItems.map((item) => (
                 <Link
@@ -250,8 +245,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                   className={cn(
                     "flex items-center gap-3 rounded-md px-3 py-3 text-sm transition-colors",
                     location.pathname === item.href
-                      ? "bg-maplink-green text-white"
-                      : "text-gray-700 hover:bg-maplink-lightgray"
+                      ? "bg-maplink-green text-white dark:bg-green-700"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-maplink-lightgray dark:hover:bg-gray-700"
                   )}
                   onClick={closeMobileMenu}
                 >
@@ -265,7 +260,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 overflow-auto">
+      <main className="flex-1 min-w-0 overflow-auto dark:bg-gray-900 transition-colors duration-200">
         <div className="md:p-8 p-4 pt-16 md:pt-8">{children}</div>
       </main>
     </div>
