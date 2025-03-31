@@ -16,14 +16,17 @@ const Logo: React.FC<LogoProps> = ({ size = "medium", className }) => {
   };
   
   return (
-    <Link to="/" className={`flex items-center gap-2 ${className}`}>
+    <Link 
+      to="/" 
+      className={`flex items-center gap-2 ${className} transition-transform duration-300 hover:scale-105`}
+    >
       <div className="relative">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 flex items-center justify-center shadow-md transition-all duration-300 hover:shadow-emerald-400/30 hover:shadow-lg">
           <Leaf className={`text-white ${size === "small" ? "h-4 w-4" : "h-5 w-5"}`} />
         </div>
-        <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-500 border-2 border-white dark:border-gray-800" />
+        <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-500 border-2 border-white dark:border-gray-800 animate-pulse" />
       </div>
-      <span className={`font-bold ${sizeClasses[size]}`}>
+      <span className={`font-bold ${sizeClasses[size]} tracking-tight`}>
         <span className="text-emerald-600 dark:text-emerald-400">Zero</span>
         <span className="text-blue-500">Waste</span>
       </span>
