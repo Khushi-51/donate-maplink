@@ -1,8 +1,7 @@
 # 🍽️ 0Waste - Food Redistribution Platform
 
 <p align="center">
-  <img src="![image](https://github.com/user-attachments/assets/824403e3-cb84-4ca0-81f5-dcf8e16f64d2)
-" alt="0Waste Project Screenshot">
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donation%20ss.png">
 </p>
 
 ## 📌 About
