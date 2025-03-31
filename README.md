@@ -37,7 +37,7 @@ Every year, millions of tons of food are wasted while countless people suffer fr
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/blockchain%20integration.jpeg">
 </p>
 <p align="center">
-  <h4> Smart Dustbin: </h4>
+  <h4> Smart Dustbin: (below attached is a video please open it and click on view raw and then download it) </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/smart%20dustbin.mp4">
 </p>
 
