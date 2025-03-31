@@ -1,70 +1,95 @@
+🍽️ 0Waste - Food Redistribution Platform
 
-# Welcome to your 0Waste project
+📌 About
 
-## Project info
+0Waste is an AI-powered food redistribution platform that connects donors and NGOs to minimize food waste and hunger. The platform facilitates food donations, tracks donations using blockchain, predicts food expiry using AI, and integrates smart IoT sensors for real-time food monitoring.
 
-**URL**: https://lovable.dev/projects/2ef4c4c4-d3d2-4872-93b0-bfb65eae690a
+🚀 Features
 
-## How can I edit this code?
+✅ Sign-Up & Login - Secure authentication for Donors & NGOs✅ Dashboard - Personalized dashboard with food listings and requests✅ Food Donation Form - Upload food details (Name, Quantity, Expiry Date, Location, etc.)✅ Live Food Surplus Map - Google Maps API integration for real-time tracking✅ Blockchain Integration - Secure and transparent donation tracking✅ AI Expiry Prediction - Machine Learning model to estimate food shelf life✅ Smart IoT Sensors - Real-time monitoring of food conditions
 
-There are several ways of editing your application.
+🛠️ Tech Stack
 
-**Use Lovable**
+💻 Frontend
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2ef4c4c4-d3d2-4872-93b0-bfb65eae690a) and start prompting.
+React.js
 
-Changes made via Lovable will be committed automatically to this repo.
+Tailwind CSS
 
-**Use your preferred IDE**
+Next.js
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+⚙️ Backend
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Node.js
 
-Follow these steps:
+Express.js
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+MongoDB
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+🔐 Authentication
 
-# Step 3: Install the necessary dependencies.
-npm i
+Firebase Auth
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+🤖 AI/ML
+
+Python (Expiry Prediction Model)
+
+🔗 Blockchain
+
+Ethereum / Solidity (Donation Tracking)
+
+🌍 IoT Integration
+
+Arduino + Sensors
+
+🔧 Installation & Setup
+
+1️⃣ Clone the repository:
+
+git clone https://github.com/KritikaSawhney/0Waste.git
+cd 0Waste
+
+2️⃣ Install dependencies:
+
+npm install
+
+3️⃣ Set up environment variables:Create a .env file and add the required credentials:
+
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+MONGODB_URI=your_mongodb_connection_string
+
+4️⃣ Run the project:
+
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+👨‍💻 Team Name
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+BugSlayers
 
-**Use GitHub Codespaces**
+🏆 Future Enhancements
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+🔹 AI-powered demand forecasting for food distribution🔹 Real-time chatbot for donor-NGO interactions🔹 Multi-language support
 
-## What technologies are used for this project?
+🎭 Create Demo Accounts
 
-This project is built with .
+To explore the platform, use the following demo accounts:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Donor Account
 
-## How can I deploy this project?
+Email: donor_demo@example.com
 
-Simply open [Lovable](https://lovable.dev/projects/2ef4c4c4-d3d2-4872-93b0-bfb65eae690a) and click on Share -> Publish.
+Password: Demo@1234
 
-## I want to use a custom domain - is that possible?
+NGO Account
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Email: ngo_demo@example.com
+
+Password: Demo@1234
+
+💡 0Waste aims to make food donation seamless and impactful. Let's fight hunger together!
+
