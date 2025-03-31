@@ -123,7 +123,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         <div className="p-4 flex items-center gap-2">
           <Link to="/" className="flex items-center">
             <span className="text-xl font-bold text-maplink-green">
-              Map<span className="text-maplink-orange">Link</span>
+              0<span className="text-maplink-orange">Waste</span>
             </span>
           </Link>
         </div>
@@ -195,7 +195,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         <div className="px-4 py-3 flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <span className="text-xl font-bold text-maplink-green">
-              Map<span className="text-maplink-orange">Link</span>
+              0<span className="text-maplink-orange">Waste</span>
             </span>
           </Link>
           <div className="flex items-center gap-2">

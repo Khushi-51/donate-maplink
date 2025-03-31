@@ -13,7 +13,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Map<span className="text-maplink-orange">Link</span>
+                0<span className="text-maplink-orange">Waste</span>
               </h1>
               <p className="text-xl md:text-2xl font-light mb-6">
                 Connecting surplus food to those in need
@@ -47,7 +47,7 @@ const Index = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">How MapLink Works</h2>
+            <h2 className="text-3xl font-bold">How 0Waste Works</h2>
             <p className="text-muted-foreground mt-2">
               Our innovative platform simplifies food donation and distribution
             </p>
@@ -171,7 +171,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold mb-4">Join the Fight Against Food Waste</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
             Whether you're a business with surplus food or an organization helping 
-            those in need, MapLink provides the technology to make a difference.
+            those in need, 0Waste provides the technology to make a difference.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
@@ -190,7 +190,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">
-                Map<span className="text-maplink-orange">Link</span>
+                0<span className="text-maplink-orange">Waste</span>
               </h3>
               <p className="text-gray-400">
                 Connecting surplus food to those in need through technology.
@@ -234,7 +234,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            <p>© {new Date().getFullYear()} MapLink. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} 0Waste. All rights reserved.</p>
           </div>
         </div>
       </footer>
