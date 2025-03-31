@@ -1,7 +1,8 @@
 # 🍽️ 0Waste - Food Redistribution Platform
 
 <p align="center">
-  <img src="https://via.placeholder.com/800x400" alt="0Waste Project Screenshot">
+  <img src="![image](https://github.com/user-attachments/assets/824403e3-cb84-4ca0-81f5-dcf8e16f64d2)
+" alt="0Waste Project Screenshot">
 </p>
 
 ## 📌 About
