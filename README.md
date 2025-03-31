@@ -6,7 +6,13 @@
 
 🚀 Features
 
-✅ Sign-Up & Login - Secure authentication for Donors & NGOs✅ Dashboard - Personalized dashboard with food listings and requests✅ Food Donation Form - Upload food details (Name, Quantity, Expiry Date, Location, etc.)✅ Live Food Surplus Map - Google Maps API integration for real-time tracking✅ Blockchain Integration - Secure and transparent donation tracking✅ AI Expiry Prediction - Machine Learning model to estimate food shelf life✅ Smart IoT Sensors - Real-time monitoring of food conditions
+✅ Sign-Up & Login - Secure authentication for Donors & NGOs
+✅ Dashboard - Personalized dashboard with food listings and requests
+✅ Food Donation Form - Upload food details (Name, Quantity, Expiry Date, Location, etc.)
+✅ Live Food Surplus Map - Google Maps API integration for real-time tracking
+✅ Blockchain Integration - Secure and transparent donation tracking
+✅ AI Expiry Prediction - Machine Learning model to estimate food shelf life
+✅ Smart IoT Dustbin - Real-time monitoring of food conditions
 
 🛠️ Tech Stack
 
@@ -46,7 +52,7 @@ Arduino + Sensors
 
 1️⃣ Clone the repository:
 
-git clone https://github.com/KritikaSawhney/0Waste.git
+git clone https://github.com/Khushi-51/donate-maplink
 cd 0Waste
 
 2️⃣ Install dependencies:
@@ -73,11 +79,13 @@ BugSlayers
 
 🏆 Future Enhancements
 
-🔹 AI-powered demand forecasting for food distribution🔹 Real-time chatbot for donor-NGO interactions🔹 Multi-language support
+🔹 AI-powered demand forecasting for food distribution
+🔹 Real-time chatbot for donor-NGO interactions
+🔹 Multi-language support
 
 🎭 Create Demo Accounts
 
-To explore the platform, use the following demo accounts:
+To explore the platform, use demo accounts:
 
 Donor Account
 
