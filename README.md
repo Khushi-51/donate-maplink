@@ -1,7 +1,11 @@
 # 🍽️ 0Waste - Food Redistribution Platform
 
 ## 📌 About
-0Waste is an AI-powered food redistribution platform that connects donors and NGOs to minimize food waste and hunger. The platform facilitates food donations, tracks donations using blockchain, predicts food expiry using AI, and integrates smart IoT sensors for real-time food monitoring.
+0Waste is an AI-powered food redistribution platform that connects donors and NGOs to minimize food waste and hunger. The platform facilitates food donations, tracks donations using blockchain, predicts food expiry using AI, and integrates smart IoT sensors for real-time food monitoring
+
+## 📌 Problem Statement
+
+Every year, millions of tons of food are wasted while countless people suffer from hunger. There is a lack of an efficient system to redistribute surplus food safely and efficiently. 0Waste aims to bridge this gap by leveraging technology to connect donors and NGOs seamlessly
 
 ## 🚀 Features
 ✅ **Sign-Up & Login** - Secure authentication for Donors & NGOs   
@@ -13,24 +17,28 @@
 
 ## 📸 Screenshots
 <p align="center">
-  <h4> Sign-Up & Login </h4>
+  <h4> Sign-Up & Login: </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/sign%20in.png">
 </p>
 <p align="center">
-  <h4> AI Expiry Prediction </h4>
+  <h4> AI Expiry Prediction: </h4>
     <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/ai%20expiry.png">
 </p>
 <p align="center">
-  <h4> Food Donation Form </h4>
+  <h4> Food Donation Form: </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donation%20ss.png">
 </p>
 <p align="center">
-  <h4> Live Food Surplus Map </h4>
+  <h4> Live Food Surplus Map: </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donor%20tracking.png">
 </p>
 <p align="center">
-  <h4> Blockchain Integration </h4>
+  <h4> Blockchain Integration: </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/blockchain%20integration.jpeg">
+</p>
+<p align="center">
+  <h4> Smart Dustbin: </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/smart%20dustbin.mp4">
 </p>
 
 
@@ -78,10 +86,40 @@ MONGODB_URI=your_mongodb_connection_string
 4️⃣ **Run the project:**  
 ```sh
 npm run dev
-``` 
+```
 
-## 👨‍💻 Contributors
-- BugSlayers
+<p align="center">
+  <h4> Dependencies </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/dependencies.jpeg">
+</p>
+
+### 📜 Team Members
+
+BugSlayers
+
+Kritika Sawhney & Khushi Badsra - Backend & Blockchain Developer
+
+Bhavik Sharma & Anav Jain - Frontend , ui/ux  
+
+### 📜 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+### 📜 🤝 Contribution Guidelines
+
+We welcome contributions! If you'd like to contribute:
+
+Fork the repository.
+
+Create a new branch (git checkout -b feature-branch).
+
+Make changes and commit (git commit -m "Added new feature").
+
+Push the branch (git push origin feature-branch).
+
+Open a Pull Request.📜 License
+
+
 
 ## 🏆 Future Enhancements
 🔹 AI-powered demand forecasting for food distribution  
