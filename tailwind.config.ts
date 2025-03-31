@@ -64,9 +64,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				maplink: {
-					green: '#4CAF50',
-					orange: '#FF8C00',
-					blue: '#2196F3',
+					green: '#36B37E',
+					blue: '#2684FF',
 					lightgray: '#F5F7F5',
 					gray: '#DDDDDD',
 				}
