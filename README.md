@@ -1,9 +1,5 @@
 # 🍽️ 0Waste - Food Redistribution Platform
 
-<p align="center">
-  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donation%20ss.png">
-</p>
-
 ## 📌 About
 0Waste is an AI-powered food redistribution platform that connects donors and NGOs to minimize food waste and hunger. The platform facilitates food donations, tracks donations using blockchain, predicts food expiry using AI, and integrates smart IoT sensors for real-time food monitoring.
 
@@ -18,8 +14,22 @@
 
 ## 📸 Screenshots
 <p align="center">
-  <img src="https://via.placeholder.com/800x400" alt="Dashboard Screenshot">
+  <h4> Sign-Up & Login </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/sign%20in.png">
 </p>
+<p align="center">
+  <h4> AI Expiry Prediction </h4>
+    <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/ai%20expiry.png">
+</p>
+<p align="center">
+  <h4> Food Donation Form </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donation%20ss.png">
+</p>
+<p align="center">
+  <h4> Live Food Surplus Map </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donor%20tracking.png">
+</p>
+
 
 ## 🛠️ Tech Stack
 ### 💻 Frontend
