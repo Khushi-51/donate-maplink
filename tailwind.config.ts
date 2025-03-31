@@ -67,10 +67,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				maplink: {
-					green: '#36B37E',
-					blue: '#2684FF',
-					lightgray: '#F5F7F5',
-					gray: '#DDDDDD',
+					green: '#2E8B57', // Changed to a more professional sea green
+					blue: '#3E7CB1', // Changed to a more muted professional blue
+					lightgray: '#F7F9F8', // Slightly greener light gray
+					gray: '#E5E9E7', // Slightly greener gray
 				}
 			},
 			borderRadius: {
@@ -114,6 +114,10 @@ export default {
 				'slide-right': {
 					'0%': { transform: 'translateX(-20px)', opacity: '0' },
 					'100%': { transform: 'translateX(0)', opacity: '1' },
+				},
+				'rotate-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
 				}
 			},
 			animation: {
@@ -124,14 +128,15 @@ export default {
 				'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
 				'slide-up': 'slide-up 0.5s ease-out forwards',
 				'slide-right': 'slide-right 0.5s ease-out forwards',
+				'rotate-slow': 'rotate-slow 15s linear infinite',
 			},
 			boxShadow: {
-				'glow': '0 0 15px rgba(34, 197, 94, 0.4)',
+				'glow': '0 0 15px rgba(46, 139, 87, 0.4)',
 				'card': '0 10px 30px rgba(0, 0, 0, 0.1)'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'gradient-subtle': 'linear-gradient(to right, rgb(240, 248, 255), rgb(245, 250, 255))',
+				'gradient-subtle': 'linear-gradient(to right, rgb(245, 250, 248), rgb(240, 248, 244))',
 			},
 		}
 	},

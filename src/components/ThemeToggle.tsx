@@ -51,11 +51,11 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className={`rounded-full text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/20 transition-all duration-300 ${isTransitioning ? 'animate-spin' : ''}`}
+      className={`rounded-full text-[#2E8B57] dark:text-[#4ca77b] hover:bg-[#e9f5f0] dark:hover:bg-[#234934]/20 transition-all duration-300 ${isTransitioning ? 'animate-spin' : ''}`}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (
-        <Sun className="h-5 w-5 transition-transform duration-300 hover:rotate-12" />
+        <Sun className="h-5 w-5 transition-transform duration-300 hover:rotate-12 animate-pulse-slow" />
       ) : (
         <Moon className="h-5 w-5 transition-transform duration-300 hover:rotate-12" />
       )}
