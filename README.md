@@ -29,6 +29,10 @@
   <h4> Live Food Surplus Map </h4>
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/images%20for%20readme/donor%20tracking.png">
 </p>
+<p align="center">
+  <h4> Blockchain Integration </h4>
+  <img src="https://github.com/Khushi-51/donate-maplink/blob/main/blockchain%20integration.jpeg">
+</p>
 
 
 ## 🛠️ Tech Stack
