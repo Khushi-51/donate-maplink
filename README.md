@@ -9,31 +9,7 @@
 ✅ **Food Donation Form** - Upload food details (Name, Quantity, Expiry Date, Location, etc.)    
 ✅ **Live Food Surplus Map** - Google Maps API integration for real-time tracking   
 ✅ **Blockchain Integration** - Secure and transparent donation tracking    
-✅ **AI Expiry Prediction** - Machine Learning model to estimate food shelf life    
-✅ **Smart IoT Sensors** - Real-time monitoring of food conditions    
-
-## 🛠️ Tech Stack
-### 💻 Frontend
-- React.js
-- Tailwind CSS
-- Next.js
-
-### ⚙️ Backend
-- Node.js
-- Express.js
-- MongoDB
-
-### 🔐 Authentication
-- Firebase Auth
-
-### 🤖 AI/ML
-- Python (Expiry Prediction Model)
-
-### 🔗 Blockchain
-- Ethereum / Solidity (Donation Tracking)
-
-### 🌍 IoT Integration
-- Arduino + Sensors
+✅ **AI Expiry Prediction** - Machine Learning model to estimate food shelf life      
 
 ## 📸 Screenshots
 <p align="center">
@@ -57,6 +33,26 @@
   <img src="https://github.com/Khushi-51/donate-maplink/blob/main/blockchain%20integration.jpeg">
 </p>
 
+
+## 🛠️ Tech Stack
+### 💻 Frontend
+- React.js
+- Tailwind CSS
+- Next.js
+
+### ⚙️ Backend
+- Node.js
+- Express.js
+- MongoDB
+
+### 🤖 AI/ML
+- Python (Expiry Prediction Model)
+
+### 🔗 Blockchain
+- Ethereum / Solidity (Donation Tracking)
+
+### 🌍 IoT Integration
+- Arduino + Sensors
 
 ## 🔧 Installation & Setup
 1️⃣ **Clone the repository:**  
